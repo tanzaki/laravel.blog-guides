@@ -1,559 +1,382 @@
-Getting Started with Laravel
+Bắt đầu với Laravel
 ==========================
 
-This guide covers getting up and running with Laravel PHP.
+Hướng dẫn này bao gồm làm quen và tạo web app bằng Laravel PHP.
 
-After reading this guide, you will know:
+Sau khi đọc hướng dẫn này, bạn sẽ biết:
 
-* How to install Laravel, create a new Laravel application, and connect your
-  application to a database.
-* The general layout of a Laravel application.
-* The basic principles of MVC (Model, View, Controller) and RESTful design.
-* How to quickly generate the starting pieces of a Laravel application.
+* Cách cài Laravel, tạo app Laravel, và kết nối vào một database.
+* Bố cục của app Laravel.
+* Các nguyên lý cơ bản trong MVC (Model, View, Controller) và thiết kế RESTful.
+* Cách tạo ra các phần của một app Laravel.
 
 --------------------------------------------------------------------------------
 
-Guide Assumptions
+Chuẩn bị
 -----------------
 
-This guide is designed for beginners who want to get started with a Laravel
-application from scratch. It does not assume that you have any prior experience
-with Laravel.
+Hướng dẫn này được thiết kế cho người mới bắt đầu muốn làm app Laravel từ đầu.
+ Bạn không cần bất kỳ kiến thức Laravel nào trước đây.
 
-Laravel is a web application framework running on the PHP programming language.
-If you have no prior experience with PHP, you will find a very steep learning
-curve diving straight into Laravel. There are several curated lists of online resources
-for learning PHP:
+Laravel là framework cho web app chạy trên ngôn ngữ PHP.
+Nếu bạn chưa từng thử PHP, bạn sẽ thấy Laravel hơi khó.
+Dưới đây là danh sách các tài liệu online để học PHP: (được sắp xếp theo thứ tự)
 
-* [Official PHP Programming Language website](https://www.ruby-lang.org/en/documentation/)
-* [List of Free Programming Books](https://github.com/vhf/free-programming-books/blob/master/free-programming-books.md#ruby)
+* [Trang web Chính thức PHP] (https://php.net/en/documentation/)
+* [List các Sách lập trình Free] (https://github.com/vhf/free-programming-books/blob/master/free-programming-books.md#php)
 
-Be aware that some resources, while still excellent, cover versions of PHP as old as
-1.6, and commonly 1.8, and will not include some syntax that you will see in day-to-day
-development with Laravel.
+Lưu ý rằng một số tài liệu của các phiên bản của PHP cũ như
+5.3, sẽ không bao gồm một số cú pháp mà bạn sẽ thấy khi phát triển app Laravel hàng ngày.
 
-What is Laravel?
+Laravel là gì?
 --------------
 
-Laravel is a web application development framework written in the PHP programming language.
-It is designed to make programming web applications easier by making assumptions
-about what every developer needs to get started. It allows you to write less
-code while accomplishing more than many other languages and frameworks.
-Experienced Laravel developers also report that it makes web application
-development more fun.
+Laravel là một framework phát triển web application viết bằng ngôn ngữ PHP.
+Được thiết kế để làm cho lập trình các web applications dễ dàng hơn bằng cách tạo sẵn những gì mọi developer cần để bắt đầu. Nó cho phép bạn viết ít code 
+ hơn trong khi xong nhiều tính năng, nhanh hơn nhiều ngôn ngữ khác và các frameworks khác.
+Các developers Laravel có kinh nghiệm cũng nói rằng Laravel khiến cho web application
+development vui hơn.
 
-Laravel is opinionated software. It makes the assumption that there is a "best"
-way to do things, and it's designed to encourage that way - and in some cases to
-discourage alternatives. If you learn "The Laravel Way" you'll probably discover a
-tremendous increase in productivity. If you persist in bringing old habits from
-other languages to your Laravel development, and trying to use patterns you
-learned elsewhere, you may have a less happy experience.
+Laravel là software "độc đoán". Nghĩa là nó quyết định rằng có một cách "tốt nhất"
+để làm mọi việc, và nó được thiết kế để khuyến khích cách đó - và trong một số trường hợp ngăn không cho dùng các lựa chọn thay thế. Nếu bạn học "The Laravel Way" có lẽ bạn sẽ khám phá ra một
+Tăng năng suất. Nếu bạn cố đưa những thói quen cũ từ các ngôn ngữ khác để phát triển Laravel, và cố gắng sử dụng các patterns bạn học được ở nơi khác, bạn có thể sẽ có một trải nghiệm tồi tệ.
 
-The Laravel philosophy includes two major guiding principles:
+Triết lý Laravel bao gồm hai nguyên tắc chính:
 
-* **Don't Repeat Yourself:** DRY is a principle of software development which
-  states that "Every piece of knowledge must have a single, unambiguous, authoritative
-  representation within a system." By not writing the same information over and over
-  again, our code is more maintainable, more extensible, and less buggy.
-* **Convention Over Configuration:** Laravel has opinions about the best way to do many
-  things in a web application, and defaults to this set of conventions, rather than
-  require that you specify minutiae through endless configuration files.
+* **Don't Repeat Yourself:** DRY là một nguyên tắc phát triển phần mềm mà
+  tuyên bố rằng "Trong một hệ thống, mọi đoạn thông tin (mọi mẩu code) đều phải là duy nhất, rõ nghĩa, hữu dụng. "Bằng cách không viết cùng một thông tin hơn và hơn một lần, code của chúng ta sẽ dễ maintain hơn, dễ mở rộng hơn, và ít lỗi.
+* **Convention Over Configuration:** Laravel có quan điểm ​​về cách tốt nhất để làm nhiều thứ trong một web application, và mặc định là bộ quy tắc này, hơn là yêu cầu bạn chỉ định chi tiết thông qua các file config vô tận.
 
-Creating a New Laravel Project
+Tạo mới Laravel Project
 ----------------------------
-The best way to read this guide is to follow it step by step. All steps are
-essential to run this example application and no additional code or steps are
-needed.
+Cách tốt nhất để đọc hướng dẫn này là làm theo từng bước một. Tất cả các bước đều cần thiết để chạy app này và không cần thêm code hay bước nào khác.
 
-By following along with this guide, you'll create a Laravel project called
-`blog`, a (very) simple weblog. Before you can start building the application,
-you need to make sure that you have Laravel itself installed.
+Bằng cách làm theo song song với hướng dẫn này, bạn sẽ tạo một project Laravel được gọi `Blog`, một weblog (rất) đơn giản. Trước khi bạn bắt đầu xây dựng app,
+Bạn cần đảm bảo rằng bạn đã cài Laravel.
 
-TIP: The examples below use `$` to represent your terminal prompt in a UNIX-like OS,
-though it may have been customized to appear differently. If you are using Windows,
-your prompt will look something like `c:\source_code>`
+TIP: Các ví dụ dưới đây dùng `$` đại diện cho terminal prompt(dấu nhắc lệnh trong command-line của bạn) trong hệ điều hành UNIX-like, dù nó có thể được tùy chỉnh để hiển thị theo cách khác. Nếu bạn đang dùng Windows,
+Dấu nhắc của bạn sẽ là `C:\path\to\htdocs>`
 
-### Installing Laravel
+### Cài Laravel
 
-Before you install Laravel, you should check to make sure that your system has the
-proper prerequisites installed. These include PHP and SQLite3.
+Trước khi cài Laravel, bạn nên kiểm tra để chắc chắn rằng hệ thống của bạn đáp ứng prerequisites. Chúng bao gồm PHP và MySQL.
 
-Open up a command line prompt. On macOS open Terminal.app, on Windows choose
-"Run" from your Start menu and type 'cmd.exe'. Any commands prefaced with a
-dollar sign `$` should be run in the command line. Verify that you have a
-current version of PHP installed:
+Mở command line. Trên macOS mở Terminal.app, trên Windows chọn
+"Run" từ menu Start và gõ 'cmd.exe'. Bất kỳ lệnh bắt đầu với một ký hiệu đô la `$` sẽ được chạy trong command line. Verify rằng bạn đã cài version hiện tại của PHP:
 
 ```bash
 $ ruby -v
 ruby 2.3.1p112
 ```
 
-Laravel requires PHP version 2.2.2 or later. If the version number returned is
-less than that number, you'll need to install a fresh copy of PHP.
+Laravel yêu cầu phiên bản PHP 5.6.4 trở lên. Nếu version number trả về là
+nhỏ hơn 5.6.4, bạn sẽ phải cài một bản sao của PHP.
 
-TIP: A number of tools exist to help you quickly install PHP and PHP
-on Laravel on your system. Windows users can use [Laravel Installer](http://railsinstaller.org),
-while macOS users can use [Tokaido](https://github.com/tokaido/tokaidoapp).
-For more installation methods for most Operating Systems take a look at
-[ruby-lang.org](https://www.ruby-lang.org/en/documentation/installation/).
+TIP: Có sẵn công cụ giúp bạn cài đặt PHP và PHP Laravel. Người dùng Windows có thể cài [Bitnami WAMP] (https://bitnami.com/stack/wamp),
+Trong khi người dùng macOS có thể sử dụng [XAMPP] (https://www.apachefriends.org/download.html).
+Để biết thêm cách cài cho hầu hết các Hệ điều hành hãy xem
+[Ruby-lang.org] (https://www.apachefriends.org/index.html).
 
-If you are working on Windows, you should also install the
-[PHP Installer Development Kit](http://rubyinstaller.org/downloads/).
-
-You will also need an installation of the SQLite3 database.
-Many popular UNIX-like OSes ship with an acceptable version of SQLite3.
-On Windows, if you installed Laravel through Laravel Installer, you
-already have SQLite installed. Others can find installation instructions
-at the [SQLite3 website](https://www.sqlite.org).
-Verify that it is correctly installed and in your PATH:
+Bạn cũng cần cài đặt cơ sở dữ liệu SQLite3.
+Các hệ điều hành UNIX-like phổ biến đi kèm với một phiên bản chấp nhận được của SQLite3.
+Trên Windows, nếu bạn đã cài đặt Laravel qua Bitnami WAMP, thì bạn cũng đã cài SQLite. Những người khác có thể tìm hướng dẫn cài đặt tại trang web [MySQL Server] (https://dev.mysql.com/downloads/installer/).
+Verify rằng nó được cài và trong PATH của bạn:
 
 ```bash
 $ sqlite3 --version
 ```
 
-The program should report its version.
+SQLite sẽ trả về phiên bản của nó.
 
-To install Laravel, use the `gem install` command provided by PHPGems:
-
-```bash
-$ gem install rails
-```
-
-To verify that you have everything installed correctly, you should be able to
-run the following:
+Để cài Laravel, sử dụng lệnh `composer global require "laravel/installer"` được cung cấp bởi [GetComposer](https://getcomposer.org/download/):
 
 ```bash
-$ rails --version
+$ composer global require "laravel/installer"
 ```
 
-If it says something like "Laravel 5.1.1", you are ready to continue.
-
-### Creating the Blog Application
-
-Laravel comes with a number of scripts called generators that are designed to make
-your development life easier by creating everything that's necessary to start
-working on a particular task. One of these is the new application generator,
-which will provide you with the foundation of a fresh Laravel application so that
-you don't have to write it yourself.
-
-To use this generator, open a terminal, navigate to a directory where you have
-rights to create files, and type:
+Để verify rằng bạn đã cài đặt đúng mọi thứ, bạn sẽ có thể
+Chạy như sau:
 
 ```bash
-$ rails new blog
+$ laravel - v
 ```
 
-This will create a Laravel application called Blog in a `blog` directory and
-install the gem dependencies that are already mentioned in `Gemfile` using
-`bundle install`.
+Nếu có nội dung như "Laravel Installer 1.3.7", bạn đã sẵn sàng tiếp tục.
 
-NOTE: If you're using Windows Subsystem for Linux then there are currently some
-limitations on file system notifications that mean you should disable the `spring`
-and `listen` gems which you can do by running `rails new blog --skip-spring --skip-listen`.
+### Tạo app Blog
 
-TIP: You can see all of the command line options that the Laravel application
-builder accepts by running `rails new -h`.
+Laravel đi kèm với một số scripts được gọi là generators mà được thiết kế để giúp bạn phát triển app dễ dàng hơn bằng cách tạo ra mọi thứ cần thiết để bắt đầu code trên một task nhất định. Một trong số đó là new application generator, sẽ cung cấp cho bạn app Laravel mới nên bạn không phải tự viết
 
-After you create the blog application, switch to its folder:
+Để dùng generator này, hãy mở command-line, mở một thư mục, và gõ:
+
+```bash
+$ laravel new blog
+```
+
+Lệnh này sẽ tạo một app Laravel tên là Blog trong thư mục `blog` và cài các thư viện dependencies đã được liệt kê trong `composer.json` bằng cách sử dụng
+`composer update`.
+
+
+TIP: Bạn có thể thấy tất cả các options  lệnh mà app Laravel builder chấp nhận bằng cách chạy `laravel new -h`.
+
+Sau khi bạn tạo app blog, chuyển sang thư mục đó:
 
 ```bash
 $ cd blog
 ```
 
-The `blog` directory has a number of auto-generated files and folders that make
-up the structure of a Laravel application. Most of the work in this tutorial will
-happen in the `app` folder, but here's a basic rundown on the function of each
-of the files and folders that Laravel created by default:
+Thư mục `blog` có một số files và folders được tạo ra tự động
+làm ra của một app Laravel. Hầu hết công việc trong hướng dẫn này sẽ nằm trong thư mục `app`, nhưng đây là tóm tắt cơ bản về chức năng của từng
+files và folders mà Laravel tạo theo mặc định:
 
 | File/Folder | Purpose |
 | ----------- | ------- |
-|app/|Contains the controllers, models, views, helpers, mailers, channels, jobs and assets for your application. You'll focus on this folder for the remainder of this guide.|
-|bin/|Contains the rails script that starts your app and can contain other scripts you use to setup, update, deploy or run your application.|
-|config/|Configure your application's routes, database, and more. This is covered in more detail in [Configuring Laravel Applications](configuring.html).|
-|config.ru|Rack configuration for Rack based servers used to start the application.|
-|db/|Contains your current database schema, as well as the database migrations.|
-|Gemfile<br>Gemfile.lock|These files allow you to specify what gem dependencies are needed for your Laravel application. These files are used by the Bundler gem. For more information about Bundler, see the [Bundler website](http://bundler.io).|
-|lib/|Extended modules for your application.|
-|log/|Application log files.|
-|public/|The only folder seen by the world as-is. Contains static files and compiled assets.|
-|Rakefile|This file locates and loads tasks that can be run from the command line. The task definitions are defined throughout the components of Laravel. Rather than changing Rakefile, you should add your own tasks by adding files to the lib/tasks directory of your application.|
-|README.md|This is a brief instruction manual for your application. You should edit this file to tell others what your application does, how to set it up, and so on.|
-|test/|Unit tests, fixtures, and other test apparatus. These are covered in [Testing Laravel Applications](testing.html).|
-|tmp/|Temporary files (like cache and pid files).|
-|vendor/|A place for all third-party code. In a typical Laravel application this includes vendored gems.|
-|.gitignore|This file tells git which files (or patterns) it should ignore. See [GitHub - Ignoring files](https://help.github.com/articles/ignoring-files) for more info about ignoring files.
+|app/| Bao gồm controllers, models, helpers, mailers, channels, jobs và assets cho app của bạn. Bạn sẽ tập trung vào thư mục này cho phần còn lại của hướng dẫn này.|
+|resources/| Bao gồm các views, assets chưa được compiled|
+|artisan| Chứa bộ lệnh mà bắt đầu app của bạn và có thể chứa các bộ lệnh khác mà bạn sử dụng để setup, update, deploy hoặc run app của bạn.|
+|config/| Config database và nhiều thứ khác. Sẽ được trình bày chi tiết hơn trong [Cấu hình app Laravel] (configuring.html).|
+|.env| Cấu hình environment cho DotEnv dựa trên máy chủ được dùng để start app.
+|database/| Chứa cấu trúc database hiện tại, cũng như các database migrations.|
+|composer.json <br>composer.lock| Các tệp này cho phép bạn chỉ định những thư viện phụ thuộc (dependencies libraries) cần thiết cho app Laravel của bạn. Những files này được sử dụng bởi Composer autoload. Để biết thêm thông tin về Composer, xem [GetComposer] (http://getcomposer.org).|
+|vendor/| Mô-đun mở rộng (dependencies libraries) cho app của bạn |
+|public/|Là thư mục có thể xem công khai trên Internet. Chứa các static files và các assets đã dịch.|
+|README.md| Đây là hướng dẫn sử dụng ngắn gọn cho app của bạn. Bạn nên chỉnh sửa tệp này để người khác biết app của bạn dùng làm gì, Cách setup, v.v.|
+|tests/|Unit tests, fixtures, và các loại test khác. Được đề cập trong [Testing Laravel Applications](testing.html).|
+|storage/|Các tệp được tạo trong quá trình app làm việc.|
+|.gitignore|Tệp này cho biết tệp (hoặc patterns) nào cần bỏ qua. Xem [GitHub - Ignoring files](https://help.github.com/articles/ignoring-files) để biết thêm thông tin về việc bỏ qua files.
 
-Hello, Laravel!
+Xin chào, Laravel!
 -------------
 
-To begin with, let's get some text up on screen quickly. To do this, you need to
-get your Laravel application server running.
+Để bắt đầu, hãy hiển thị text trên màn hình một cách nhanh. Để làm điều này, bạn cần phải bắt đầu chạy Laravel application.
 
-### Starting up the Web Server
+### Khởi động Web Server
 
-You actually have a functional Laravel application already. To see it, you need to
-start a web server on your development machine. You can do this by running the
-following in the `blog` directory:
+Bạn thực sự đã có app Laravel. Để xem nó, bạn cần phải start web server trên máy tính của bạn. Bạn có thể làm điều này bằng cách chạy lệnh sau trong thư mục `blog`:
 
 ```bash
-$ bin/rails server
+$ php artisan serve
 ```
 
-TIP: If you are using Windows, you have to pass the scripts under the `bin`
-folder directly to the PHP interpreter e.g. `ruby bin\rails server`.
 
-TIP: Compiling CoffeeScript and JavaScript asset compression requires you
-have a JavaScript runtime available on your system, in the absence
-of a runtime you will see an `execjs` error during asset compilation.
-Usually macOS and Windows come with a JavaScript runtime installed.
-Laravel adds the `mini_racer` gem to the generated `Gemfile` in a
-commented line for new apps and you can uncomment if you need it.
-`therubyrhino` is the recommended runtime for JPHP users and is added by
-default to the `Gemfile` in apps generated under JPHP. You can investigate
-all the supported runtimes at [ExecJS](https://github.com/rails/execjs#readme).
+Điều này sẽ kích hoạt Artisan Server, một máy chủ web mặc định đi kèm với Laravel. Để xem
+app của bạn đang hoạt động, mở Chrome và mở
+<http://localhost:8000>. Bạn sẽ thấy page thông tin mặc định Laravel:
 
-This will fire up Puma, a web server distributed with Laravel by default. To see
-your application in action, open a browser window and navigate to
-<http://localhost:3000>. You should see the Laravel default information page:
+![Ảnh chụp màn hình chào mừng](images/getting_started/rails_welcome.png)
 
-![Welcome aboard screenshot](images/getting_started/rails_welcome.png)
 
-TIP: To stop the web server, hit Ctrl+C in the terminal window where it's
-running. To verify the server has stopped you should see your command prompt
-cursor again. For most UNIX-like systems including macOS this will be a
-dollar sign `$`. In development mode, Laravel does not generally require you to
-restart the server; changes you make in files will be automatically picked up by
-the server.
+TIP: Để dừng máy chủ web, hãy nhấn Ctrl +C trong cửa sổ command-line nơi Server
+đang chạy. Để verify máy chủ đã dừng, bạn sẽ lại thấy con trỏ nhắc lệnh. Đối với hầu hết các hệ thống UNIX-like như macOS, đó sẽ ký hiệu đô la `$`. Trong development mode, Laravel thường không đòi hỏi bạn phải khởi động lại máy chủ; Những thay đổi bạn thực hiện trong các files sẽ tự động được load lại từ server.
 
-The "Welcome aboard" page is the _smoke test_ for a new Laravel application: it
-makes sure that you have your software configured correctly enough to serve a
-page.
+Trang "Welcome aboard" là _smoke test_ cho một app Laravel mới: Nó chắc chắn rằng bạn đã configured phần mềm đúng và đủ để serve một page.
 
-### Say "Hello", Laravel
+### Nói "Hello", Laravel
 
-To get Laravel saying "Hello", you need to create at minimum a _controller_ and a
+Để Laravel nói "Xin chào", bạn cần tạo tối thiểu một _controller_ và một
 _view_.
 
-A controller's purpose is to receive specific requests for the application.
-_Routing_ decides which controller receives which requests. Often, there is more
-than one route to each controller, and different routes can be served by
-different _actions_. Each action's purpose is to collect information to provide
-it to a view.
+Mục đích của controller là nhận các requests cho app.
+_Routing_ quyết định controller nào nhận được requests nào. Thường, có hơn một route cho mỗi controller, và các route khác nhau được xử lý bởi _actions_ khác nhau. Mục đích từng mỗi action là lấy dữ liệu để chuyển tới view.
 
-A view's purpose is to display this information in a human readable format. An
-important distinction to make is that it is the _controller_, not the view,
-where information is collected. The view should just display that information.
-By default, view templates are written in a language called ePHP (Embedded
-PHP) which is processed by the request cycle in Laravel before being sent to the
+Mục đích của view là để hiển thị dữ liệu này dưới dạng con người có thể đọc được (trang web). Cần phân biệt rõ ràng rằng _controller_, không phải view,
+là nơi lấy dữ liệu. View chỉ nên hiển thị thông tin đó.
+Mặc định, các views viết bằng ngôn ngữ gọi là Blade được xử lý theo request cycle ở Laravel trước khi được gửi đến
 user.
 
-To create a new controller, you will need to run the "controller" generator and
-tell it you want a controller called "Welcome" with an action called "index",
-just like this:
+Để tạo ra một controller mới, bạn sẽ cần phải chạy "controller" generator và nói với nó rằng bạn muốn một controller "Welcome" với một action "index", chỉ cần:
 
 ```bash
-$ bin/rails generate controller Welcome index
+$ php artisan make:controller GreetingController --resource
 ```
 
-Laravel will create several files and a route for you.
+Lệnh này sẽ tạo một Controller ở app/Http/Controllers/GreetingController.php, Controller sẽ gồm action index
 
-```bash
-create  app/controllers/welcome_controller.rb
- route  get 'welcome/index'
-invoke  erb
-create    app/views/welcome
-create    app/views/welcome/index.html.erb
-invoke  test_unit
-create    test/controllers/welcome_controller_test.rb
-invoke  helper
-create    app/helpers/welcome_helper.rb
-invoke    test_unit
-invoke  assets
-invoke    coffee
-create      app/assets/javascripts/welcome.coffee
-invoke    scss
-create      app/assets/stylesheets/welcome.scss
+
+Hãy mở editor và sửa action 'index':
+
+```php
+function index(){
+    return view('greeting');
+}
 ```
 
-Most important of these are of course the controller, located at
-`app/controllers/welcome_controller.rb` and the view, located at
-`app/views/welcome/index.html.erb`.
 
-Open the `app/views/welcome/index.html.erb` file in your text editor. Delete all
-of the existing code in the file, and replace it with the following single line
-of code:
+Tạo file `resources/views/greeting.blade.php` trong editor. 
 
 ```html
-<h1>Hello, Laravel!</h1>
+<h1> Xin chào, Laravel!</h1>
 ```
 
-### Setting the Application Home Page
+### Setting App Home Page
 
-Now that we have made the controller and view, we need to tell Laravel when we
-want "Hello, Laravel!" to show up. In our case, we want it to show up when we
-navigate to the root URL of our site, <http://localhost:3000>. At the moment,
-"Welcome aboard" is occupying that spot.
+Bây giờ chúng ta đã tạo controller và view, chúng ta cần nói với Laravel khi  nào thì chúng ta muốn "Xin chào, Laravel!" hiển thị. Trong trường hợp của chúng ta, chúng ta muốn nó xuất hiện khi mở link trang chủ, <http://localhost:8000>. Hiện tại,
+"Welcome aboard" đang chiếm chỗ đó.
 
-Next, you have to tell Laravel where your actual home page is located.
+Tiếp theo, bạn phải nói với Laravel nơi đặt trang chủ thực tế của bạn.
 
-Open the file `config/routes.rb` in your editor.
+Mở file `routes/web.php` trong editor và thay thế phần nội dung PHP bằng code sau.
 
-```ruby
-Laravel.application.routes.draw do
-  get 'welcome/index'
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-end
+```php
+Route::get('/','GreetingController@index');
 ```
 
-This is your application's _routing file_ which holds entries in a special
-[DSL (domain-specific language)](http://en.wikipedia.org/wiki/Domain-specific_language)
-that tells Laravel how to connect incoming requests to
-controllers and actions.
-Edit this file by adding the line of code `root 'welcome#index'`.
-It should look something like the following:
+Đây là _file routing_ trong app của bạn chứa các mục trong một file đặc biệt
+[DSL (chưa có bản dịch sát nghĩa trong tiếng Việt)] (http://en.wikipedia.org/wiki/Domain-specific_language)
+Nói với Laravel cách kết nối các requests  tới với controllers và actions.
 
-```ruby
-Laravel.application.routes.draw do
-  get 'welcome/index'
 
-  root 'welcome#index'
-end
-```
 
-`root 'welcome#index'` tells Laravel to map requests to the root of the
-application to the welcome controller's index action and `get 'welcome/index'`
-tells Laravel to map requests to <http://localhost:3000/welcome/index> to the
-welcome controller's index action. This was created earlier when you ran the
-controller generator (`bin/rails generate controller Welcome index`).
+`Route::get('/','GreetingController@index');` nói với Laravel hãy trỏ các requests đến <http://localhost:8000/> tới action index của controller GreetingController. Mà controller này đã được tạo ra trước đó khi bạn chạy
+controller generator (`php artisan make:controller GreetingController --resource`).
 
-Launch the web server again if you stopped it to generate the controller (`bin/rails
-server`) and navigate to <http://localhost:3000> in your browser. You'll see the
-"Hello, Laravel!" message you put into `app/views/welcome/index.html.erb`,
-indicating that this new route is indeed going to `WelcomeController`'s `index`
-action and is rendering the view correctly.
+Launch lại web server nếu bạn đã tắt nó để tạo controller (`php artisan serve`) và vào lại link <http://localhost:8000> trong trình duyệt của bạn. Bạn sẽ thấy
+"Xin chào, Laravel!" bạn đã code vào `resources/views/greeting.blade.php`,
+chứng tỏ route mới này thực sự chạy action `index` trong controller `WelcomeController` và đang hiển thị đúng view.
 
-TIP: For more information about routing, refer to [Laravel Routing from the Outside In](routing.html).
+TIP: Để biết thêm thông tin về routing, hãy tham khảo [Laravel Routing] (routing.html).
 
-Getting Up and Running
+Chuẩn bị và chạy
 ----------------------
 
-Now that you've seen how to create a controller, an action and a view, let's
-create something with a bit more substance.
+Bây giờ bạn đã hiểu cách tạo controller, action và view, hãy tạo ra một cái gì đó hữu dụng.
 
-In the Blog application, you will now create a new _resource_. A resource is the
-term used for a collection of similar objects, such as articles, people or
-animals.
-You can create, read, update and destroy items for a resource and these
-operations are referred to as _CRUD_ operations.
+Trong app Blog, bây giờ bạn sẽ tạo một _resource_ mới. Resource là thuật ngữ được sử dụng cho một bộ các objects tương tự, chẳng hạn như articles, people hoặc animals.
+Bạn có thể tạo, đọc, sửa, xóa các items cho một resource và các hành động này được gọi là _CRUD_.
 
-Laravel provides a `resources` method which can be used to declare a standard REST
-resource. You need to add the _article resource_ to the
-`config/routes.rb` so the file will look as follows:
+Laravel cung cấp một method `resources` có thể được sử dụng để khai báo một
+resource chuẩn REST. Bạn cần phải thêm _resource_ vào
+`routes/web.php` và file này trông sẽ như sau:
 
-```ruby
-Laravel.application.routes.draw do
-  get 'welcome/index'
-
-  resources :articles
-
-  root 'welcome#index'
-end
+```php
+Route::get('/','GreetingController@index');
+Route::resource('articles','ArticlesController');
 ```
 
-If you run `bin/rails routes`, you'll see that it has defined routes for all the
-standard RESTful actions.  The meaning of the prefix column (and other columns)
-will be seen later, but for now notice that Laravel has inferred the
-singular form `article` and makes meaningful use of the distinction.
+Nếu bạn chạy `php artisan route:list`', bạn sẽ thấy rằng đã định nghĩa các routes cho các actions chuẩn RESTful.
 
-```bash
-$ bin/rails routes
-      Prefix Verb   URI Pattern                  Controller#Action
-    articles GET    /articles(.:format)          articles#index
-             POST   /articles(.:format)          articles#create
- new_article GET    /articles/new(.:format)      articles#new
-edit_article GET    /articles/:id/edit(.:format) articles#edit
-     article GET    /articles/:id(.:format)      articles#show
-             PATCH  /articles/:id(.:format)      articles#update
-             PUT    /articles/:id(.:format)      articles#update
-             DELETE /articles/:id(.:format)      articles#destroy
-        root GET    /                            welcome#index
-```
 
-In the next section, you will add the ability to create new articles in your
-application and be able to view them. This is the "C" and the "R" from CRUD:
-create and read. The form for doing this will look like this:
+
+Verb      | URI                  | Action       | Route Name
+----------|-----------------------|--------------|---------------------
+GET       | `/photos`              | index        | photos.index
+GET       | `/photos/create`       | create       | photos.create
+POST      | `/photos`              | store        | photos.store
+GET       | `/photos/{photo}`      | show         | photos.show
+GET       | `/photos/{photo}/edit` | edit         | photos.edit
+PUT/PATCH | `/photos/{photo}`      | update       | photos.update
+DELETE    | `/photos/{photo}`      | destroy      | photos.destroy
+
+Trong phần tiếp theo, bạn sẽ có khả năng tạo các bài viết mới trong
+app và có thể hiển thị bài viết. Đây là "C" và "R" trong CRUD:
+Create và Read. Và form để làm việc này sẽ giống như sau:
 
 ![The new article form](images/getting_started/new_article.png)
 
-It will look a little basic for now, but that's ok. We'll look at improving the
-styling for it afterwards.
+Giờ trông form hơi đơn giản nhưng chẳng sao. Chúng ta sẽ xem xét cải thiện style cho nó sau.
 
 ### Laying down the groundwork
 
-Firstly, you need a place within the application to create a new article. A
-great place for that would be at `/articles/new`. With the route already
-defined, requests can now be made to `/articles/new` in the application.
-Navigate to <http://localhost:3000/articles/new> and you'll see a routing
-error:
+Đầu tiên, bạn cần một nơi trong app để tạo ra một bài viết mới.
+Tốt nhất là `/articles/create`. Với routes đã được xác định, bây giờ có thể truy cập `/articles/create`.
+Mở link <http://localhost:8000/articles/create> và bạn sẽ thấy một lỗi Routing:
 
 ![Another routing error, uninitialized constant ArticlesController](images/getting_started/routing_error_no_controller.png)
 
-This error occurs because the route needs to have a controller defined in order
-to serve the request. The solution to this particular problem is simple: create
-a controller called `ArticlesController`. You can do this by running this
-command:
+Lỗi này xảy ra vì route cần xác định controller để xử lý request. Giải pháp cho vấn đề cụ thể này rất đơn giản: tạo
+một controller được gọi là `ArticlesController`. Bạn có thể làm điều này bằng cách chạy lệnh sau:
 
 ```bash
-$ bin/rails generate controller Articles
+$ php artisan make:controller ArticlesController
 ```
 
-If you open up the newly generated `app/controllers/articles_controller.rb`
-you'll see a fairly empty controller:
+Nếu bạn mở các app/Http/Controller/ArticlesController.php` mới được tạo ra
+Bạn sẽ thấy một controller khá trống:
 
-```ruby
-class ArticlesController < ApplicationController
-end
+```php
+class ArticlesController extends Controller{
+
+    
+}
 ```
 
-A controller is simply a class that is defined to inherit from
-`ApplicationController`.
-It's inside this class that you'll define methods that will become the actions
-for this controller. These actions will perform CRUD operations on the articles
-within our system.
+Một controller chỉ đơn giản là một class kế thừa từ
+`Controller`.
+Trong class này, bạn sẽ xác định các method sẽ trở thành các actions cho controller này. Những action này sẽ thực hiện các hành động CRUD trên các articles (các bài viết) trên app.
 
-NOTE: There are `public`, `private` and `protected` methods in PHP,
-but only `public` methods can be actions for controllers.
-For more details check out [Programming PHP](http://www.ruby-doc.org/docs/ProgrammingPHP/).
+Chú ý: Có các method `public`,` private` và `protected` trong PHP,
+Nhưng chỉ các phương pháp `public` có thể là action cho controller.
+Để biết thêm chi tiết hãy xem [Programming PHP](http://www.ruby-doc.org/docs/ProgrammingPHP/).
 
-If you refresh <http://localhost:3000/articles/new> now, you'll get a new error:
+Nếu bạn refresh <http://localhost:8000/articles/create> , bạn sẽ nhận được một lỗi mới:
 
 ![Unknown action new for ArticlesController!](images/getting_started/unknown_action_new_for_articles.png)
 
-This error indicates that Laravel cannot find the `new` action inside the
-`ArticlesController` that you just generated. This is because when controllers
-are generated in Laravel they are empty by default, unless you tell it
-your desired actions during the generation process.
+Lỗi này chỉ ra rằng Laravel không thể tìm thấy action `create` bên trong
+`ArticlesController` mà bạn vừa tạo. Là do khi các controller
+được tạo ra trong Laravel, chúng mặc định trống, trừ khi bạn thêm options '--resource'
+trong quá trình tạo ra Controller.
 
-To manually define an action inside a controller, all you need to do is to
-define a new method inside the controller. Open
-`app/controllers/articles_controller.rb` and inside the `ArticlesController`
-class, define the `new` method so that your controller now looks like this:
+Để tự định nghĩa một action bên trong controller, tất cả những gì bạn cần làm là xác định một method mới bên trong controller. 
+Mở `app/Http/Controller/ArticlesController.php` và bên trong class `ArticlesController`, định nghĩa method `new` để controller của bạn trông giống như sau:
 
-```ruby
-class ArticlesController < ApplicationController
-  def new
-  end
+```php
+class ArticlesController extends Controller
+  function create (){
+    
+  }
 end
 ```
 
-With the `new` method defined in `ArticlesController`, if you refresh
-<http://localhost:3000/articles/new> you'll see another error:
+Với method `create` được định nghĩa trong `ArticlesController`, nếu bạn refresh
+<http://localhost:8000/articles/new> bạn sẽ chưa thấy gì hiển thị
 
-![Template is missing for articles/new]
-(images/getting_started/template_is_missing_articles_new.png)
 
-You're getting this error now because Laravel expects plain actions like this one
-to have views associated with them to display their information. With no view
-available, Laravel will raise an exception.
 
-In the above image, the bottom line has been truncated. Let's see what the full
-error message looks like:
 
->ArticlesController#new is missing a template for this request format and variant. request.formats: ["text/html"] request.variant: [] NOTE! For XHR/Ajax or API requests, this action would normally respond with 204 No Content: an empty white screen. Since you're loading it in a web browser, we assume that you expected to actually render a template, not… nothing, so we're showing an error to be extra-clear. If you expect 204 No Content, carry on. That's what you'll get from an XHR or API request. Give it a shot.
 
-That's quite a lot of text! Let's quickly go through and understand what each
-part of it means.
 
-The first part identifies which template is missing. In this case, it's the
-`articles/new` template. Laravel will first look for this template. If not found,
-then it will attempt to load a template called `application/new`. It looks for
-one here because the `ArticlesController` inherits from `ApplicationController`.
 
-The next part of the message contains `request.formats` which specifies
-the format of template to be served in response. It is set to `text/html` as we
-requested this page via browser, so Laravel is looking for an HTML template.
-`request.variant` specifies what kind of physical devices would be served by
-the response and helps Laravel determine which template to use in the response.
-It is empty because no information has been provided.
 
-The simplest template that would work in this case would be one located at
-`app/views/articles/new.html.erb`. The extension of this file name is important:
-the first extension is the _format_ of the template, and the second extension
-is the _handler_ that will be used to render the template. Laravel is attempting
-to find a template called `articles/new` within `app/views` for the
-application. The format for this template can only be `html` and the default
-handler for HTML is `erb`. Laravel uses other handlers for other formats.
-`builder` handler is used to build XML templates and `coffee` handler uses
-CoffeeScript to build JavaScript templates. Since you want to create a new
-HTML form, you will be using the `ERB` language which is designed to embed PHP
-in HTML.
 
-Therefore the file should be called `articles/new.html.erb` and needs to be
-located inside the `app/views` directory of the application.
+Đi trước và tạo một tệp mới tại `resources/views/articles/create.blade.php` và viết nội dung này trong đó:
 
-Go ahead now and create a new file at `app/views/articles/new.html.erb` and
-write this content in it:
 
 ```html
 <h1>New Article</h1>
 ```
 
-When you refresh <http://localhost:3000/articles/new> you'll now see that the
-page has a title. The route, controller, action and view are now working
-harmoniously! It's time to create the form for a new article.
+Khi bạn refresh <http://localhost:8000/articles/create> bây giờ bạn sẽ thấy một trang có tiêu đề. Các route, controller, action và view đang làm việc với nhau! Đã đến lúc tạo ra form cho một article mới.
 
-### The first form
+### Form đầu tiên
 
-To create a form within this template, you will use a *form
-builder*. The primary form builder for Laravel is provided by a helper
-method called `form_for`. To use this method, add this code into
-`app/views/articles/new.html.erb`:
-
-```html+erb
-<%= form_for :article do |f| %>
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </p>
-
-  <p>
-    <%= f.label :text %><br>
-    <%= f.text_area :text %>
-  </p>
-
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+```html+php
+<form>
+<label>
+Title
+<input name="text">
+</label>
+<label>
+Text
+<input name="text">
+</label>
+<button type="submit">Submit</button>
+</form>
 ```
 
-If you refresh the page now, you'll see the exact same form from our example above.
-Building forms in Laravel is really just that easy!
+Nếu bạn refresh, bạn sẽ thấy chính xác cùng một form từ ví dụ của chúng tôi ở trên.
+Xây dựng các form trong Laravel thực sự chỉ là dễ dàng!
 
-When you call `form_for`, you pass it an identifying object for this
-form. In this case, it's the symbol `:article`. This tells the `form_for`
-helper what this form is for. Inside the block for this method, the
-`FormBuilder` object - represented by `f` - is used to build two labels and two
-text fields, one each for the title and text of an article. Finally, a call to
-`submit` on the `f` object will create a submit button for the form.
 
-There's one problem with this form though. If you inspect the HTML that is
-generated, by viewing the source of the page, you will see that the `action`
-attribute for the form is pointing at `/articles/new`. This is a problem because
-this route goes to the very page that you're on right at the moment, and that
-route should only be used to display the form for a new article.
 
-The form needs to use a different URL in order to go somewhere else.
-This can be done quite simply with the `:url` option of `form_for`.
-Typically in Laravel, the action that is used for new form submissions
-like this is called "create", and so the form should be pointed to that action.
+Một form cần sử dụng một URL khác để trỏ tới sau khi click Submit
+Điều này có thể được thực hiện khá đơn giản với hàm `route('tên route')` đặt trong thuộc tính action
+Thông thường trong Laravel, action được sử dụng để gửi data khi submit form create được gọi là "store", vì thế form nên được trỏ tới action 'articles.store'.
 
-Edit the `form_for` line inside `app/views/articles/new.html.erb` to look like
-this:
+Chỉnh sửa thẻ `<form>` bên trong` app / views / articles / new.html.erb` giống như sau:
 
 ```html+erb
-<%= form_for :article, url: articles_path do |f| %>
+<form action="<?php echo route('articles.store') ?>"></form>
 ```
 
 In this example, the `articles_path` helper is passed to the `:url` option.
