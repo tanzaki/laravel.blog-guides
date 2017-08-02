@@ -22,8 +22,8 @@ Laravel là framework cho web app chạy trên ngôn ngữ PHP.
 Nếu bạn chưa từng thử PHP, bạn sẽ thấy Laravel hơi khó.
 Dưới đây là danh sách các tài liệu online để học PHP: (được sắp xếp theo thứ tự)
 
-* [Trang web Chính thức PHP] (https://php.net/en/documentation/)
-* [List các Sách lập trình Free] (https://github.com/vhf/free-programming-books/blob/master/free-programming-books.md#php)
+* [Trang web Chính thức PHP](https://php.net/en/documentation/)
+* [List các Sách lập trình Free](https://github.com/vhf/free-programming-books/blob/master/free-programming-books.md#php)
 
 Lưu ý rằng một số tài liệu của các phiên bản của PHP cũ như
 5.3, sẽ không bao gồm một số cú pháp mà bạn sẽ thấy khi phát triển app Laravel hàng ngày.
@@ -72,14 +72,14 @@ ruby 2.3.1p112
 Laravel yêu cầu phiên bản PHP 5.6.4 trở lên. Nếu version number trả về là
 nhỏ hơn 5.6.4, bạn sẽ phải cài một bản sao của PHP.
 
-TIP: Có sẵn công cụ giúp bạn cài đặt PHP và PHP Laravel. Người dùng Windows có thể cài [Bitnami WAMP] (https://bitnami.com/stack/wamp),
-Trong khi người dùng macOS có thể sử dụng [XAMPP] (https://www.apachefriends.org/download.html).
+TIP: Có sẵn công cụ giúp bạn cài đặt PHP và PHP Laravel. Người dùng Windows có thể cài [Bitnami WAMP](https://bitnami.com/stack/wamp),
+Trong khi người dùng macOS có thể sử dụng [XAMPP](https://www.apachefriends.org/download.html).
 Để biết thêm cách cài cho hầu hết các Hệ điều hành hãy xem
-[Ruby-lang.org] (https://www.apachefriends.org/index.html).
+[Ruby-lang.org](https://www.apachefriends.org/index.html).
 
 Bạn cũng cần cài đặt cơ sở dữ liệu SQLite3.
 Các hệ điều hành UNIX-like phổ biến đi kèm với một phiên bản chấp nhận được của SQLite3.
-Trên Windows, nếu bạn đã cài đặt Laravel qua Bitnami WAMP, thì bạn cũng đã cài SQLite. Những người khác có thể tìm hướng dẫn cài đặt tại trang web [MySQL Server] (https://dev.mysql.com/downloads/installer/).
+Trên Windows, nếu bạn đã cài đặt Laravel qua Bitnami WAMP, thì bạn cũng đã cài SQLite. Những người khác có thể tìm hướng dẫn cài đặt tại trang web [MySQL Server](https://dev.mysql.com/downloads/installer/).
 Verify rằng nó được cài và trong PATH của bạn:
 
 ```bash
@@ -134,10 +134,10 @@ files và folders mà Laravel tạo theo mặc định:
 |app/| Bao gồm controllers, models, helpers, mailers, channels, jobs và assets cho app của bạn. Bạn sẽ tập trung vào thư mục này cho phần còn lại của hướng dẫn này.|
 |resources/| Bao gồm các views, assets chưa được compiled|
 |artisan| Chứa bộ lệnh mà bắt đầu app của bạn và có thể chứa các bộ lệnh khác mà bạn sử dụng để setup, update, deploy hoặc run app của bạn.|
-|config/| Config database và nhiều thứ khác. Sẽ được trình bày chi tiết hơn trong [Cấu hình app Laravel] (configuring.html).|
+|config/| Config database và nhiều thứ khác. Sẽ được trình bày chi tiết hơn trong [Cấu hình app Laravel](configuring.html).|
 |.env| Cấu hình environment cho DotEnv dựa trên máy chủ được dùng để start app.
 |database/| Chứa cấu trúc database hiện tại, cũng như các database migrations.|
-|composer.json <br>composer.lock| Các tệp này cho phép bạn chỉ định những thư viện phụ thuộc (dependencies libraries) cần thiết cho app Laravel của bạn. Những files này được sử dụng bởi Composer autoload. Để biết thêm thông tin về Composer, xem [GetComposer] (http://getcomposer.org).|
+|composer.json <br>composer.lock| Các tệp này cho phép bạn chỉ định những thư viện phụ thuộc (dependencies libraries) cần thiết cho app Laravel của bạn. Những files này được sử dụng bởi Composer autoload. Để biết thêm thông tin về Composer, xem [GetComposer](http://getcomposer.org).|
 |vendor/| Mô-đun mở rộng (dependencies libraries) cho app của bạn |
 |public/|Là thư mục có thể xem công khai trên Internet. Chứa các static files và các assets đã dịch.|
 |README.md| Đây là hướng dẫn sử dụng ngắn gọn cho app của bạn. Bạn nên chỉnh sửa tệp này để người khác biết app của bạn dùng làm gì, Cách setup, v.v.|
@@ -222,7 +222,7 @@ Route::get('/','GreetingController@index');
 ```
 
 Đây là _file routing_ trong app của bạn chứa các mục trong một file đặc biệt
-[DSL (chưa có bản dịch sát nghĩa trong tiếng Việt)] (http://en.wikipedia.org/wiki/Domain-specific_language)
+[DSL (chưa có bản dịch sát nghĩa trong tiếng Việt)](http://en.wikipedia.org/wiki/Domain-specific_language)
 Nói với Laravel cách kết nối các requests  tới với controllers và actions.
 
 
@@ -234,7 +234,7 @@ Launch lại web server nếu bạn đã tắt nó để tạo controller (`php 
 "Xin chào, Laravel!" bạn đã code vào `resources/views/greeting.blade.php`,
 chứng tỏ route mới này thực sự chạy action `index` trong controller `WelcomeController` và đang hiển thị đúng view.
 
-TIP: Để biết thêm thông tin về routing, hãy tham khảo [Laravel Routing] (routing.html).
+TIP: Để biết thêm thông tin về routing, hãy tham khảo [Laravel Routing](routing.html).
 
 Chuẩn bị và chạy
 ----------------------
